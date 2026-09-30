@@ -1,6 +1,6 @@
-// mod node;
+// use crate::solver::toroid;
 
-// // Empty sudoku can be represented by 344 columns (81 pieces, 81 places, 81 row relations, 81 box relations)
+// // Empty sudoku can be represented by 324 columns (81 pieces, 81 places, 81 row relations, 81 box relations)
 // const DIVIDER: usize = 81;
 // // each row will have a 1 in the location and in the piece
 // // they will also have a 1 representing the row they are in as well as the column
@@ -77,35 +77,35 @@
     // list
 // }
 
-// // use std::{collections::HashSet, env::temp_dir};
+// use std::{collections::HashSet, env::temp_dir};
 
-// // fn apply_partial_set_to_generic(sudoku: Vec<Vec<u8>>, partial_solution: &mut HashSet::<Vec<Relation>>) -> Result<Vec<Vec<Relation>>, String> {
-    // // let mut converted: Vec<Vec<Relation>> = generate_default_matrix();
+// fn apply_partial_set_to_generic(sudoku: Vec<Vec<u8>>, partial_solution: &mut HashSet::<Vec<Relation>>) -> Result<Vec<Vec<Relation>>, String> {
+    // let mut converted: Vec<Vec<Relation>> = generate_default_matrix();
 
-    // // for line in sudoku {
-        // // let mut row = 0;
-        // // for value in line {
-            // // if value != 0 {
+    // for line in sudoku {
+        // let mut row = 0;
+        // for value in line {
+            // if value != 0 {
                 
-            // // }
-            // // index += 1;
-        // // }
-    // // }
+            // }
+            // index += 1;
+        // }
+    // }
 
-    // // Ok(converted)
-// // }
+    // Ok(converted)
+// }
 
-// // fn naive_algorthim_x(arr: Vec<Vec<u8>>, partial_solution: &mut HashSet::<Vec<u8>>) -> Vec<Vec<u8>> {
-    // // todo!()
-// // }
+// fn naive_algorthim_x(arr: Vec<Vec<u8>>, partial_solution: &mut HashSet::<Vec<u8>>) -> Vec<Vec<u8>> {
+    // todo!()
+// }
 
-// // pub fn solve_sudoku_naive(sudoku: Vec<Vec<u8>>) -> Result<Vec<Vec<u8>>, String> {
-    // // let mut partial_solution = HashSet::<Vec<u8>>::new();
-    // // let binary_array = convert_to_binary_array(sudoku, &mut partial_solution).unwrap();
-    // // let result = naive_algorthim_x(binary_array, &mut partial_solution);
-    // // Ok(result)
-// // }
+// pub fn solve_sudoku_naive(sudoku: Vec<Vec<u8>>) -> Result<Vec<Vec<u8>>, String> {
+    // let mut partial_solution = HashSet::<Vec<u8>>::new();
+    // let binary_array = convert_to_binary_array(sudoku, &mut partial_solution).unwrap();
+    // let result = naive_algorthim_x(binary_array, &mut partial_solution);
+    // Ok(result)
+// }
 
-// // pub fn solve_sudoku_dlx(sudoku: Vec<Vec<u8>>) {
+// pub fn solve_sudoku_dlx(sudoku: Vec<Vec<u8>>) {
 
-// // }
+// }

@@ -25,7 +25,7 @@ pub fn read_sudoku_from_file(filename: &str) -> Result<Vec<Vec<u8>>, Box<dyn Err
     Ok(sudoku)
 }
 
-pub fn print_sudoku(sudoku: &Vec<Vec<u8>>) {
+pub fn print_sudoku_9x9(sudoku: &Vec<Vec<u8>>) {
     let mut outer_index = 0;
     for line in sudoku {
         if outer_index % 3 == 0 && outer_index != 0 {
@@ -44,7 +44,26 @@ pub fn print_sudoku(sudoku: &Vec<Vec<u8>>) {
     }
 }
 
-pub fn _write_sudoku_to_file(sudoku: &Vec<Vec<u8>>, filename: &str) -> io::Result<()> {
+pub fn print_sudoku_4x4(sudoku: &Vec<Vec<u8>>) {
+    let mut outer_index = 0;
+    for line in sudoku {
+        if outer_index % 2 == 0 && outer_index != 0 {
+            println!("----+----");
+        }
+        let mut inner_index = 0;
+        for int in line {
+            if inner_index % 2 == 0 && inner_index != 0 {
+                print!("| ");
+            }
+            print!("{} ", int);
+            inner_index += 1;
+            if inner_index == 4 {println!();}
+        }
+        outer_index += 1;
+    }
+}
+
+pub fn write_sudoku_to_file(sudoku: &Vec<Vec<u8>>, filename: &str) -> io::Result<()> {
     let mut new_file = fs::File::create(filename)?;
 
     for line in sudoku {    

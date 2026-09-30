@@ -135,4 +135,57 @@ mod tests {
 
         assert_eq!(16, DROP_COUNT.load(Ordering::SeqCst))
     }
+
+    #[test]
+    fn test_toroid_construction() {
+        let list = ToroidList::new(SphericalNode::new(1));
+
+        let mut right_seeking = list.head.clone().unwrap();
+        let mut down_seeking = list.head.clone().unwrap();
+
+        for i in 1..4 {
+            right_seeking = ToroidList::insert_right(right_seeking.clone(), SphericalNode::new(i+1));    
+            down_seeking = ToroidList::insert_below(down_seeking.clone(), SphericalNode::new((4 * i) + 1));
+        }
+
+        let mut down_base = list.head.clone().unwrap().borrow().down.clone().unwrap();
+        let mut right_base = list.head.clone().unwrap();
+        let mut data = down_base.borrow().data;
+
+
+        for _ in 0..3 {
+            let mut interior_base = down_base.clone();
+            for _ in 0..3 {
+                right_base = right_base.clone().borrow().right.clone().unwrap();
+                interior_base = ToroidList::insert_below_and_right(right_base.clone(), interior_base.clone(), SphericalNode::new(data + 1));
+                data += 1;
+            }    
+            data += 1;
+            down_base = down_base.clone().borrow().down.clone().unwrap();
+            right_base = right_base.clone().borrow().down.clone().unwrap().borrow().right.clone().unwrap();
+        }
+
+        let mut curr = list.head.clone();
+
+        let mut expected = 1;
+
+        for _ in 0..4 {
+            for _ in 0..4 {
+                match curr {
+                    Some(node) => {
+                        assert_eq!(expected, node.borrow().data);
+                        expected += 1;
+                        curr = node.borrow().right.clone();
+                    },
+                    None => {panic!()}
+                }
+            }
+            match curr {
+                Some(node) => {
+                    curr = node.borrow().down.clone();
+                },
+                None => {panic!()}
+            }
+        }
+    }
 }
